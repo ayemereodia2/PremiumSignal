@@ -1,9 +1,13 @@
 import 'package:flutter/cupertino.dart';
 
 class AgentLogin {
-  final String username;
-  final String password;
-  final String otp;
+  // ignore: non_constant_identifier_names
+  final String Username;
+  // ignore: non_constant_identifier_names
+  final String Password;
+  // ignore: non_constant_identifier_names
+  final String PINOTP;
 
-  AgentLogin({@required this.username, this.password = '', this.otp = ''});
+  // ignore: non_constant_identifier_names
+  AgentLogin({@required this.Username, this.Password = '', this.PINOTP = ''});
 }

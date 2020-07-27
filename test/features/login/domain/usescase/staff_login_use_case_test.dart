@@ -17,8 +17,8 @@ void main(){
      useCase = StaffLoginUseCase(repository: mockLoginRepository);
    });
 
-   final AgentLogin agentLogin = AgentLogin(username: 'Nneoma.okoroafor',password: 'Tinaoko@93',otp: '');
-   final AgentLoginResponse loginResponse = AgentLoginResponse(responseCode: '00', responseMessage: 'SUCCESSFUL');
+   final AgentLogin agentLogin = AgentLogin(Username: 'Nneoma.okoroafor',Password: 'Tinaoko@93',PINOTP: '');
+   final AgentLoginResponse loginResponse = AgentLoginResponse(ResponseCode: '00', ResponseMessage: 'SUCCESSFUL');
    test('should get valid response payload when valid login details are provided', () async {
         // arrange
     when(mockLoginRepository.login(any)).

@@ -1,0 +1,1 @@
+const LOGIN_URL = 'https://webservicestest.zenithbank.com:8443/ZenithAccountService/api/security/authuser';

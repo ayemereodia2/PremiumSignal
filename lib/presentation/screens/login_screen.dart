@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:zenithbankkyc/bloc/login_bloc.dart';
 import 'package:zenithbankkyc/presentation/utilities/toast_alert.dart';
 
 class LoginScreen extends StatefulWidget {

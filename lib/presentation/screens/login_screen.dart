@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:zenithbankkyc/bloc/login_bloc.dart';
+import 'package:zenithbankkyc/presentation/screens/menu_screen.dart';
+import 'package:zenithbankkyc/presentation/utilities/animations/spinner_animations.dart';
+
 import 'package:zenithbankkyc/presentation/utilities/toast_alert.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -96,6 +100,25 @@ class LoginScreen extends StatelessWidget {
   }
 }
 
+void loginApp(BuildContext context) {
+  Navigator.pushAndRemoveUntil(
+      context,
+      PageRouteBuilder(pageBuilder: (BuildContext context, Animation animation,
+          Animation secondaryAnimation) {
+        return MenuPage();
+      }, transitionsBuilder: (BuildContext context, Animation<double> animation,
+          Animation<double> secondaryAnimation, Widget child) {
+        return new SlideTransition(
+          position: new Tween<Offset>(
+            begin: const Offset(1.0, 0.0),
+            end: Offset.zero,
+          ).animate(animation),
+          child: child,
+        );
+      }),
+      (Route route) => false);
+}
+
 class _LoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -103,7 +126,7 @@ class _LoginButton extends StatelessWidget {
       buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
         return state.status.isSubmissionInProgress
-            ? const CircularProgressIndicator()
+            ? SpinnerLoader() //CircularProgressIndicator() //
             : ButtonTheme(
                 height: 45.0,
                 minWidth: 200.0,
@@ -123,13 +146,18 @@ class _LoginButton extends StatelessWidget {
                   onPressed: state.status.isValidated
                       ? () {
                           context.bloc<LoginBloc>().add(LoginButtonSubmitted());
-                         if (context.bloc<LoginBloc>().state.status.isSubmissionSuccess){
-                           print('Successful');
-                           // Navigate to HomeScreen
-                         }else{
-                           submit(context);
-                         }
+                          if (context
+                              .bloc<LoginBloc>()
+                              .state
+                              .status
+                              .isSubmissionSuccess) {
+                            loginApp(context);
+                            //   print('Successful');
 
+                            // Navigate to HomeScreen
+                          } else {
+                            submit(context);
+                          }
                         }
                       : null,
                 ),

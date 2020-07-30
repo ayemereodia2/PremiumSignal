@@ -7,7 +7,6 @@ import 'package:zenithbankkyc/core/util/constants.dart';
 
 import 'package:zenithbankkyc/data/models/agent_login_model.dart';
 import 'package:zenithbankkyc/domain/entities/agent_login.dart';
-import 'package:zenithbankkyc/domain/entities/agent_login_response.dart';
 
 abstract class AgentLoginRemoteData {
   Future<AgentLoginModel> loginAgent(AgentLogin login);
@@ -19,9 +18,10 @@ class AgentLoginRemoteDataImpl implements AgentLoginRemoteData {
   AgentLoginRemoteDataImpl({@required this.httpClient});
 
   @override
-  Future<AgentLoginModel>loginAgent(AgentLogin login) async {
+  Future<AgentLoginModel> loginAgent(AgentLogin login) async {
     final response = await httpClient.post(LOGIN_URL,
-        headers: {'Content-Type': 'application/json'}, body: jsonEncode(<String, String>{
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode(<String, String>{
           'Username': login.Username,
           'Password': login.Password,
           'PINOTP': login.PINOTP,

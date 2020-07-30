@@ -523,7 +523,7 @@ class _MapViewState extends State<MapView> {
                                   zoom: 18.0,
                                 ),
                               ),
-                            );
+                            ); //
                           },
                         ),
                       ),

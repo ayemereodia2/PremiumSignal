@@ -80,7 +80,7 @@ class LoginScreen extends StatelessWidget {
                               _LoginButton(),
                               SizedBox(height: 20.0),
                             ],
-                          )),
+                          ),),
                       SizedBox(height: 15.0),
                     ],
                   ),
@@ -122,7 +122,7 @@ class _LoginButton extends StatelessWidget {
                   ),
                   onPressed: state.status.isValidated
                       ? () {
-                          context.bloc<LoginBloc>().add(LoginButtonSubmitted());
+                          context.bloc<LoginBloc>().add(LoginButtonSubmitted(state.username.value, state.password.value));
                          if (context.bloc<LoginBloc>().state.status.isSubmissionSuccess){
                            print('Successful');
                            // Navigate to HomeScreen

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:zenithbankkyc/presentation/screens/login_screen.dart';
+import 'injection_container.dart' as di;
 
 void main() {
+  di.init();
   runApp(MyApp());
 }
 

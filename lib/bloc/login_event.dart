@@ -15,5 +15,8 @@ class PasswordChanged implements LoginEvent{
 }
 
 class LoginButtonSubmitted implements LoginEvent {
+  final String username;
+  final String password;
 
+  LoginButtonSubmitted(this.username, this.password);
 }

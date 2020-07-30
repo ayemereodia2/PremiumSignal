@@ -10,6 +10,6 @@ class Username extends FormzInput<String, UsernameValidationError> {
 
   @override
   UsernameValidationError validator(String value) {
-    return value?.isNotEmpty == true ? null : UsernameValidationError.empty;
+    return value.contains('.') && value.length > 5 && value.contains('') ? null : UsernameValidationError.empty;
   }
 }

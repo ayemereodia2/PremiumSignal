@@ -12,12 +12,14 @@ import 'package:zenithbankkyc/data/datasources/agent_login_remote_data_source.da
 import 'package:http/http.dart' as http;
 import 'package:zenithbankkyc/data/models/agent_login_model.dart';
 import 'package:zenithbankkyc/domain/entities/agent_login.dart';
+import 'package:zenithbankkyc/domain/usecases/staff_login_use_case.dart';
 
 part 'login_event.dart';
 part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, OnValidationSuccess> {
-  LoginBloc() : super(LoginInitial());
+  final StaffLoginUseCase loginUseCase;
+  LoginBloc({@required this.loginUseCase}) : super(LoginInitial());
 
   @override
   Stream<OnValidationSuccess> mapEventToState(
@@ -50,14 +52,21 @@ class LoginBloc extends Bloc<LoginEvent, OnValidationSuccess> {
     if (state.status.isValidated) {
       yield state.onCopyWith(status: FormzStatus.submissionInProgress);
       try {
-        final login = AgentLogin(Username: state.username.value, Password: state.password.value);
-          final result =  await loginAgent(login);
-        print(result.ResponseCode);
-        if(result.ResponseCode == '00'){
-            yield state.onCopyWith(status: FormzStatus.submissionSuccess);
-          }else{
+        final login = AgentLogin(Username: event.username, Password: event.password);
+          final result =  await loginUseCase.call(Params(login: login));
+          result.fold((failure) async* {
             yield state.onCopyWith(status: FormzStatus.submissionFailure);
-          }
+
+          }, (success) async* {
+             yield state.onCopyWith(status: FormzStatus.submissionSuccess);
+
+          });
+//        print(result.ResponseCode);
+//        if(result.ResponseCode == '00'){
+//            yield state.onCopyWith(status: FormzStatus.submissionSuccess);
+//          }else{
+//            yield state.onCopyWith(status: FormzStatus.submissionFailure);
+//          }
       } on Exception catch (_) {
         yield state.onCopyWith(status: FormzStatus.submissionFailure);
       }

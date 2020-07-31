@@ -1,5 +1,3 @@
-
-import 'package:dartz/dartz.dart';
 import 'package:data_connection_checker/data_connection_checker.dart';
 
 abstract class NetworkInfo {
@@ -7,7 +5,6 @@ abstract class NetworkInfo {
 }
 
 class NetworkInfoImpl implements NetworkInfo {
-
   final DataConnectionChecker dataConnectionChecker;
 
   NetworkInfoImpl(this.dataConnectionChecker);
@@ -17,5 +14,4 @@ class NetworkInfoImpl implements NetworkInfo {
     dataConnectionChecker.hasConnection;
     return Future.value(true);
   }
-
 }

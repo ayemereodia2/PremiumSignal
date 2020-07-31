@@ -1,0 +1,16 @@
+{
+  "ResponseCode": "00",
+  "ResponseMessage": "SUCCESSFUL",
+  "User": {
+    "UserName": "NNEOMAA",
+    "AdUsername": "NNEOMA.OKOROAFOR",
+    "EmployeeId": "17179",
+    "Branch": "HEAD OFFICE",
+    "BranchNumber": 1,
+    "IsActive": true,
+    "Role": "SUPP_PROC1",
+    "HasError": false,
+    "ErrorMessage": "SUCCESSFUL",
+    "PhoenixRole": "PHOENIX VIEW"
+  }
+}

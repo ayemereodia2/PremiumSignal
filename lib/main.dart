@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:zenithbankkyc/presentation/screens/login_screen.dart';
-import 'package:zenithbankkyc/presentation/screens/menu_screen.dart';
 import 'core/util/constants.dart';
 import 'injection_container.dart' as di;
+import 'presentation/screens/widgets/bottom_navBar.dart';
 
 void main() {
   di.init();
@@ -16,8 +16,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/',
       routes: {
-        LOGIN_PATH:(context) => LoginScreen(),
-        SHOW_LIST_PATH:(context) => MenuPage(),
+        LOGIN_PATH: (context) => LoginScreen(),
+        SHOW_LIST_PATH: (context) => BottomNavScreen(),
       },
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',

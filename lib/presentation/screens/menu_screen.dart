@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zenithbankkyc/bloc/unverified_acc_bloc.dart';
-import 'package:zenithbankkyc/data/models/unverified_model.dart';
 import 'package:zenithbankkyc/domain/entities/unverified_account.dart';
+import 'package:zenithbankkyc/presentation/screens/account_detail_screen.dart';
 import 'package:zenithbankkyc/presentation/screens/geolocattion_screen.dart';
 import 'package:zenithbankkyc/presentation/screens/login_screen.dart';
-import 'package:zenithbankkyc/presentation/utilities/animations/spinner_animations.dart';
+import 'package:zenithbankkyc/presentation/utilities/custom_Colors.dart';
 
 class MenuPage extends StatefulWidget {
   MenuPage({Key key}) : super(key: key);
@@ -20,7 +20,8 @@ class _MenuPageState extends State<MenuPage> {
     return Container(
       child: Scaffold(
         appBar: AppBar(
-          title: Text("KYC"),
+          title: Text("Unclaimed Accounts"),
+          backgroundColor: ZenithColor.primaryColor,
           elevation: 1,
           actions: <Widget>[
             Padding(
@@ -45,7 +46,6 @@ class _MenuPageState extends State<MenuPage> {
 }
 
 Widget unverifiedAccounts(BuildContext context) {
-  List<UnverifiedAccount> unverifiedModel = [];
   return BlocConsumer<UnverifiedAccBloc, UnverifiedAccState>(
     builder: (context, state) {
       context.bloc<UnverifiedAccBloc>().add(EmptyEvent());
@@ -60,7 +60,6 @@ Widget unverifiedAccounts(BuildContext context) {
       }
 
       if (state is LoadedUnverifiedAccState) {
-
         return ListView.builder(
           itemCount: state.unverifiedList.data.length,
           itemBuilder: (context, index) {
@@ -68,17 +67,17 @@ Widget unverifiedAccounts(BuildContext context) {
               child: ListTile(
                 onTap: () {
                   print('helloList');
-                  //  print(unverifiedAccount[index].userAccount);
-                }, //uhu
+                  //    detailView(context, state.unverifiedList.data[index]);
+                },
                 title: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                      "Acct N0: ${state.unverifiedList.data[index].AccountNumber}"),
+                      "Acct No: ${state.unverifiedList.data[index].AccountNumber}"),
                 ),
                 subtitle: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    "Addr: ${state.unverifiedList.data[index].ResidentialAddress}",
+                    "Address: ${state.unverifiedList.data[index].ResidentialAddress}",
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
@@ -91,14 +90,16 @@ Widget unverifiedAccounts(BuildContext context) {
                       highlightColor: Colors.transparent,
                       disabledBorderColor: Colors.transparent,
                       borderSide:
-                      BorderSide(color: Colors.transparent, width: 0.0),
+                          BorderSide(color: Colors.transparent, width: 0.0),
                       onPressed: () {
-                        String val = state.unverifiedList.data[index].ResidentialAddress
-                            .toString();
-                        mapView(context, val);
+                        //Claim account here
+                        // String val = state
+                        //     .unverifiedList.data[index].ResidentialAddress
+                        //     .toString();
+                        // mapView(context, val);
                       },
                       child: Icon(
-                        Icons.location_on,
+                        Icons.add,
                         color: Colors.red,
                       )),
                 ),
@@ -106,41 +107,19 @@ Widget unverifiedAccounts(BuildContext context) {
             );
           },
         );
-
-      } else if (state is ErrorState){
+      } else if (state is ErrorState) {
         return Center(
           child: Text(
             state.errorMessage,
             style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
           ),
         );
-      }else{
-        return Center(
-          child:  CircularProgressIndicator()
-        );
+      } else {
+        return Center(child: CircularProgressIndicator());
       }
-
     },
     listener: (BuildContext context, UnverifiedAccState state) {},
   );
-}
-
-void mapView(BuildContext context, String userAddress) {
-  Navigator.push(
-      context,
-      PageRouteBuilder(pageBuilder: (BuildContext context, Animation animation,
-          Animation secondaryAnimation) {
-        return MapView(customersAddress: userAddress);
-      }, transitionsBuilder: (BuildContext context, Animation<double> animation,
-          Animation<double> secondaryAnimation, Widget child) {
-        return new SlideTransition(
-          position: new Tween<Offset>(
-            begin: const Offset(1.0, 0.0),
-            end: Offset.zero,
-          ).animate(animation),
-          child: child,
-        );
-      }));
 }
 
 void exitApp(BuildContext context) {

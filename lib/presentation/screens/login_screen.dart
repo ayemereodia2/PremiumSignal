@@ -139,10 +139,8 @@ class _LoginButton extends StatelessWidget {
                   ),
                   onPressed: state.status.isValidated
                       ? () {
-                          // context.bloc<LoginBloc>().add(LoginButtonSubmitted(
-                          //     state.username.value, state.password.value));
-                          Navigator.pushReplacementNamed(
-                              context, SHOW_LIST_PATH);
+                          context.bloc<LoginBloc>().add(LoginButtonSubmitted(
+                              state.username.value, state.password.value));
                         }
                       : null,
                 ),

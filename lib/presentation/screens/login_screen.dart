@@ -108,12 +108,13 @@ class _LoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<LoginBloc, OnValidationSuccess>(
-      listener: (context, state){
-        if(state is LogInSuccessState){
+      listener: (context, state) {
+        if (state is LogInSuccessState) {
           Navigator.pushReplacementNamed(context, SHOW_LIST_PATH);
         }
-        if(state is ErrorState){
-          showErrorMessage(context,state.errorMessage);
+        if (state is ErrorState) {
+          showErrorMessage(context, state.errorMessage);
+          //   Navigator.pushReplacementNamed(context, SHOW_LIST_PATH);
         }
       },
       buildWhen: (previous, current) => previous.status != current.status,
@@ -147,6 +148,4 @@ class _LoginButton extends StatelessWidget {
       },
     );
   }
-
-
 }

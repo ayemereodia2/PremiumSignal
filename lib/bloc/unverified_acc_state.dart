@@ -9,8 +9,8 @@ class LoadingUnverifiedAccInitial extends UnverifiedAccState {
   List<Object> get props => [];
 }
 
-class LoadedUnverifiedAccState extends UnverifiedAccState{
-     final UnverifiedModel unverifiedList;
+class LoadedUnverifiedAccState extends UnverifiedAccState {
+  final UnverifiedModel unverifiedList;
 
   LoadedUnverifiedAccState(this.unverifiedList);
 

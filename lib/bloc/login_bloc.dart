@@ -55,13 +55,14 @@ class LoginBloc extends Bloc<LoginEvent, OnValidationSuccess> {
     if (state.status.isValidated) {
       yield state.onCopyWith(status: FormzStatus.submissionInProgress);
       try {
-        final login = AgentLogin(Username: state.username.value, Password: state.password.value);
+        final login = AgentLogin(
+            Username: state.username.value, Password: state.password.value);
         final result = await loginAgent(login);
 
         if (result.ResponseCode == '00') {
-             yield LogInSuccessState(result.ResponseCode);
+          yield LogInSuccessState(result.ResponseCode);
         } else {
-            yield ErrorState('Log In failure');
+          yield ErrorState('Log In failure');
         }
       } on Exception catch (_) {
         yield state.onCopyWith(status: FormzStatus.submissionFailure);
@@ -84,7 +85,6 @@ class LoginBloc extends Bloc<LoginEvent, OnValidationSuccess> {
     }
   }
 }
-
 
 /**
 

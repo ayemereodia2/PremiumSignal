@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "615205076483",
+    "project_id": "prem-signals",
+    "storage_bucket": "prem-signals.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:615205076483:android:a7aa416e92c28e6d149836",
+        "android_client_info": {
+          "package_name": "com.ayemere.premiumsignals"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "615205076483-r9go5an4l60ehpe65j2onso3nhtc25q3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmXgxuy6n8EF1yT7q5lVYMMpdQ8iiywOM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "615205076483-r9go5an4l60ehpe65j2onso3nhtc25q3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

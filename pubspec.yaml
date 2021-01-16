@@ -55,6 +55,10 @@ dependencies:
   camera: ^0.5.7+2
   #acessing file path
   path_provider: ^1.4.2
+  #firebase
+  firebase_core: ^0.7.0
+  firebase_auth: ^0.20.0+1
+  cloud_firestore: ^0.16.0
   
   path: ^1.6.4
 dev_dependencies:
@@ -77,6 +81,9 @@ flutter:
   assets:
     - assets/zenithLogo.png
     - assets/placeholder1.png
+    - assets/signal2.jpg
+    - assets/signap.png
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
